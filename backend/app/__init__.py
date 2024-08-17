@@ -2,8 +2,10 @@ from flask import Flask, jsonify, request
 import os
 from .recognizer import text_to_speech
 from .generator import generate
+from dotenv import load_dotenv
 def create_app():
     app = Flask(__name__)
+    load_dotenv()
     API_KEY = os.getenv('API_KEY')
 
     @app.route('/')
