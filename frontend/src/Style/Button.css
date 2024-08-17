@@ -1,0 +1,13 @@
+:root {
+  --blue: #002D62;
+}
+
+button {
+  color: var(--blue);
+  height: 100%;
+  width: 15%;
+}
+
+.button-container {
+  border: 1px solid red;
+}
