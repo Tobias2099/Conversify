@@ -12,17 +12,16 @@ function Conversation() {
   const [audioUrl, setAudioUrl] = useState(null);
   const [audioContext, setAudioContext] = useState(null);
   const [analyzer, setAnalyzer] = useState(null);
-  const [dataArray, setDataArray] = useState(new Uint8Array(0));
   const [amplitude, setAmplitude] = useState(0);
+  const [animationId, setAnimationId] = useState(null); //useful for cancelling animation
 
   useEffect(() => {
     if (audioContext && analyzer) {
       const bufferLength = analyzer.frequencyBinCount;
-      const array = new Uint8Array(bufferLength);
-      setDataArray(array);
+      const dataArray = new Uint8Array(bufferLength);
 
       const updateDataArray = () => {
-        analyzer.getByteFrequencyData(array);
+        analyzer.getByteFrequencyData(dataArray);
 
         //calculating average amplitude
         const sum = dataArray.reduce((a, b) => a + b, 0);
@@ -30,10 +29,17 @@ function Conversation() {
         setAmplitude(averageAmplitude);
         console.log("Amplitude: " + amplitude);
 
-        requestAnimationFrame(updateDataArray);
+        const id = requestAnimationFrame(updateDataArray);
+        setAnimationId(id);
       };
       updateDataArray();
     }
+
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId); // Stop the animation when recording stops
+      }
+    };
   }, [audioContext, analyzer]);
 
   useEffect(() => {
@@ -90,10 +96,15 @@ function Conversation() {
   }
 
   function stopRecording() {
+    console.log("STOP RECORDING");
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
       mediaRecorder.stop();
     }
-    console.log("DATA ARRAY: " + dataArray);
+
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      setAnimationId(null); // Clear the animation ID
+    }
   }
 
   function backClick() { 
