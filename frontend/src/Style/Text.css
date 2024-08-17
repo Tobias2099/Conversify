@@ -1,0 +1,22 @@
+
+.textbox {
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px;
+    max-width: 60%;
+    word-wrap: break-word;
+  }
+  
+  .textbox.user {
+    background-color: #d1e7dd; /* Light green background for user messages */
+    align-self: flex-end; /* Align to the right */
+  }
+  
+  .textbox.ai {
+    background-color: #f8d7da; /* Light red background for AI messages */
+    align-self: flex-start; /* Align to the left */
+  }
+  
+  .textbox p {
+    margin: 0;
+  }

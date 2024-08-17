@@ -158,12 +158,20 @@ function Conversation() {
         <Button name="Change Settings" style={{backgroundColor: '#FFC000', border: 'none', width: '18%', marginTop: '-1%', fontSize: '150%', height: '50px'}}  handleClick={backClick}/>
       </div>
       
-      <div>
-        <AudioIcon amplitude={amplitude} />
-      </div>
-
-      <div>
-        <center>{audioUrl && <audio controls src={audioUrl} />}</center>
+      <div id="main-content">
+        <div id="audio-icon-container">
+          <AudioIcon amplitude={amplitude} />
+        </div>
+        <div id="chat-container">
+          <h3>Conversation</h3>
+          <div id="chat-box">
+            <ul>
+              {conversationHistory.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
       <div id="convo-btns">
