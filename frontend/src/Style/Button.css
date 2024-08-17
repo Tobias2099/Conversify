@@ -5,12 +5,12 @@
 button {
   color: var(--blue);
   height: 73px;
-  width: 30%;
+  width: 27%;
   font-size: 175%;
   font-weight: 500;
-  border: 2.5px solid var(--blue);
+  border: 2.75px solid var(--blue);
   border-radius: 4px;
-  background-color: #D1E8FF;
+  background-color: white;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effect */
 }
 
@@ -23,7 +23,7 @@ button:hover {
 .button-container {
   display: flex;
   justify-content: space-evenly;
-  width: 50%;
+  width: 70%;
   margin: auto;
 }
 
