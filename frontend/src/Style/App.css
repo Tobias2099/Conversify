@@ -1,2 +1,14 @@
-body {
+:root {
+  --blue: #002D62;
+}
+
+h2 {
+  text-align: center;
+  font-size: 200%;
+  color: var(--blue);
+  font-weight: bold;
+  margin-top: 3%;
+}
+#start {
+  margin-top: 5%;
 }
