@@ -31,8 +31,8 @@
   display: flex;
   justify-content: center; /* Center the button horizontally */
   align-items:center;
-  flex: 1; 
-  margin: -10px; 
+  flex: 0; 
+  margin: 0; 
 }
 
 #convo-btns-bottom button {

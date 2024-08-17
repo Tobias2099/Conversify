@@ -126,8 +126,11 @@ function Conversation() {
       </div>
       
       <div>
-        <h3>Audio Icon:</h3>
         <AudioIcon amplitude={amplitude} />
+      </div>
+
+      <div>
+        <center>{audioUrl && <audio controls src={audioUrl} />}</center>
       </div>
 
       <div id="convo-btns">
@@ -141,10 +144,6 @@ function Conversation() {
         </div>
       </div>
 
-      <div>
-        <h3>Recorded Audio:</h3>
-        {audioUrl && <audio controls src={audioUrl} />}
-      </div>
     </>
   )
 }
