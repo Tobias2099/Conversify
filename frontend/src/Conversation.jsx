@@ -28,15 +28,11 @@ function Conversation() {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
-
   function textToSpeech(text, lang = 'en-US') {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
     window.speechSynthesis.speak(utterance);
   }
-
-
-
 
   useEffect(() => {
     if (audioContext && analyzer) {
@@ -120,7 +116,6 @@ function Conversation() {
   }
 
   function stopRecording() {
-    console.log("STOP RECORDING");
     SpeechRecognition.stopListening();
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
       mediaRecorder.stop();
