@@ -23,8 +23,8 @@
 }
 
 #convo-btns button {
-  margin: 25px;
-  width: 25%;
+  margin: 15px;
+  width: 20%;
 }
 
 #convo-btns-bottom {
@@ -32,10 +32,10 @@
   justify-content: center; /* Center the button horizontally */
   align-items:center;
   flex: 1; 
-  margin: -30px; 
+  margin: -10px; 
 }
 
 #convo-btns-bottom button {
-  margin: 10 px; 
-  width: 25%; 
+  margin: 4px; 
+  width: 20%; 
 } 

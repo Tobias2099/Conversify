@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import "./Style/Conversation.css"; 
 import Title from "./Components/Title.jsx"; 
-import Button from "./Components/Button.jsx"; 
+import Button from "./Components/Button.jsx";
+import AudioIcon from "./Components/AudioIcon.jsx"; 
 
 function Conversation() {
   const navigate = useNavigate(); 
@@ -12,6 +13,7 @@ function Conversation() {
   const [audioContext, setAudioContext] = useState(null);
   const [analyzer, setAnalyzer] = useState(null);
   const [dataArray, setDataArray] = useState(new Uint8Array(0));
+  const [amplitude, setAmplitude] = useState(0);
 
   useEffect(() => {
     if (audioContext && analyzer) {
@@ -21,7 +23,14 @@ function Conversation() {
 
       const updateDataArray = () => {
         analyzer.getByteFrequencyData(array);
-        setDataArray([...array]); // Trigger re-render
+
+        //calculating average amplitude
+        const sum = dataArray.reduce((a, b) => a + b, 0);
+        const averageAmplitude = sum / dataArray.length;
+        setAmplitude(averageAmplitude);
+        console.log("Amplitude: " + amplitude);
+
+        //setDataArray([...array]); // Trigger re-render
         requestAnimationFrame(updateDataArray);
       };
       updateDataArray();
@@ -113,6 +122,11 @@ function Conversation() {
       <div>
         <h3>Recorded Audio:</h3>
         {audioUrl && <audio controls src={audioUrl} />}
+      </div>
+
+      <div>
+        <h3>Audio Icon:</h3>
+        <AudioIcon amplitude={amplitude} />
       </div>
     </>
   )
