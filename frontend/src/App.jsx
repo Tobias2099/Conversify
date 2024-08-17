@@ -35,7 +35,7 @@ function App() {
       </div>
 
       <div id="start" className="button-container">
-        <Button name="Start" style={{fontSize: '200%', height: '70px', border: '3.5px solid', width: '30%'}}/>
+        <Button name="START" style={{fontSize: '250%', height: '80px', border: '3.75px solid', width: '35%'}}/>
       </div>
     </>
   )
