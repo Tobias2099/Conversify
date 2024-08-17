@@ -7,8 +7,8 @@ button {
   height: 65px;
   width: 25%;
   font-size: 150%;
-  border: 2px solid var(--blue);
-  border-radius: 3%;
+  border: 2.5px solid var(--blue);
+  border-radius: 4px;
   background-color: white;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effect */
 }

@@ -8,9 +8,11 @@ function Title() {
     textAlign: 'center',        // Center align text
     padding: '20px',            // Add some padding
     fontSize: '5em',            // Large font size
-    fontFamily: 'Calibri, sans-serif', // Font style
+    fontFamily: 'Arial, Calibri, sans-serif', // Font style
     fontWeight: 'bold',
-
+    padding: '3%',
+    margin: '-1%',
+    marginBottom: '4%'
   }
 
   const bioStyle = { 

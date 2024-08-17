@@ -8,7 +8,9 @@ h2 {
   color: var(--blue);
   font-weight: bold;
   margin-top: 3%;
+  font-family: 'Arial';
 }
+
 #start {
   margin-top: 5%;
 }
