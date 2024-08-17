@@ -11,11 +11,20 @@ function Conversation() {
   const [audioUrl, setAudioUrl] = useState(null);
   const [audioContext, setAudioContext] = useState(null);
   const [analyzer, setAnalyzer] = useState(null);
+  const [dataArray, setDataArray] = useState(new Uint8Array(0));
 
   useEffect(() => {
     if (audioContext && analyzer) {
       const bufferLength = analyzer.frequencyBinCount;
-      setDataArray(new Uint8Array(bufferLength));
+      const array = new Uint8Array(bufferLength);
+      setDataArray(array);
+
+      const updateDataArray = () => {
+        analyzer.getByteFrequencyData(array);
+        setDataArray([...array]); // Trigger re-render
+        requestAnimationFrame(updateDataArray);
+      };
+      updateDataArray();
     }
   }, [audioContext, analyzer]);
 
@@ -30,7 +39,18 @@ function Conversation() {
   async function startRecording() {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });  
+
+        // Create AudioContext and AnalyserNode
+        const context = new AudioContext();
+        const analyzer = context.createAnalyser();
+        const source = context.createMediaStreamSource(stream);
+        source.connect(analyzer);
+
+        // Set state
+        setAudioContext(context);
+        setAnalyzer(analyzer);
+
         const recorder = new MediaRecorder(stream);
         const chunks = [];
 
@@ -65,6 +85,7 @@ function Conversation() {
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
       mediaRecorder.stop();
     }
+    console.log("DATA ARRAY: " + dataArray);
   }
 
   function backClick() { 
