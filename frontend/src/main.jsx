@@ -1,8 +1,8 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import Conversation from './Conversation.jsx'
-import './Style/index.css'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
+import Conversation from './Conversation.jsx';
+import './Style/index.css';
 
 
 import {
@@ -14,12 +14,12 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>
+    element: <App />,
   },
   {
     path: "/conversation",
-    element: <Conversation></Conversation>
-  }
+    element: <Conversation />,
+  },
 ]);
 
 createRoot(document.getElementById('root')).render(
@@ -27,3 +27,4 @@ createRoot(document.getElementById('root')).render(
     <RouterProvider router={router} />
   </StrictMode>,
 )
+

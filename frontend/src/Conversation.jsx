@@ -4,6 +4,7 @@ import Title from "./Components/Title.jsx"
 import Button from "./Components/Button.jsx"
 
 function Conversation() {
+
   return (
     <>
       <div id="banner">
@@ -12,10 +13,11 @@ function Conversation() {
       </div>
       
       <div id="convo-btns">
-        
+        <Button name="Start Recording"/>
+        <button name="End Conversation" />
       </div>
     </>
   )
 }
 
-export default Conversation
+export default Conversation;
