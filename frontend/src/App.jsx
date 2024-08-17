@@ -6,7 +6,6 @@ import './Style/App.css'
 function App() {
 
   function levelClick(event) {
-    console.log("event: " + event.target.name);
     const buttons = document.querySelectorAll('button');
     const type = event.target.name;
     buttons.forEach((btn) => {
@@ -36,7 +35,7 @@ function App() {
       </div>
 
       <div id="start" className="button-container">
-        <Button name="Start" />
+        <Button name="START" style={{fontSize: '250%', height: '80px', border: '3.75px solid', width: '35%'}}/>
       </div>
     </>
   )

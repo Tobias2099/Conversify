@@ -22,9 +22,17 @@ function Title() {
     textAlign: 'center',        // Center align text
     padding: '20px',            // Add some padding
     fontSize: '5em',            // Large font size
+<<<<<<< HEAD
     fontFamily: 'Calibri, sans-serif', // Font style
     fontWeight: 'bold',             //Bold the title 
 
+=======
+    fontFamily: 'Arial, Calibri, sans-serif', // Font style
+    fontWeight: 'bold',
+    padding: '3%',
+    margin: '-1%',
+    marginBottom: '4%'
+>>>>>>> 926fa5a715a64916321a0f1abf76d275e2338b8f
   }
 
   const bioStyle = { 

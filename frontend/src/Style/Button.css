@@ -4,11 +4,12 @@
 
 button {
   color: var(--blue);
-  height: 65px;
-  width: 25%;
-  font-size: 150%;
-  border: 2px solid var(--blue);
-  border-radius: 3%;
+  height: 73px;
+  width: 30%;
+  font-size: 175%;
+  font-weight: 500;
+  border: 2.5px solid var(--blue);
+  border-radius: 4px;
   background-color: white;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effect */
 }
