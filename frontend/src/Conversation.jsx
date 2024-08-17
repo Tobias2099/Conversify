@@ -190,13 +190,14 @@ function Conversation() {
         {audioUrl && <audio controls src={audioUrl} />}
       </div>
       <p>Transcript: {transcript}</p>
+      {console.log(conversationHistory)}
       <ul>
         {conversationHistory.map(item => {
-          <li>{item}</li>
+          return <li>{item}</li>
         })}
       </ul>
   
-      <Transcript conversation={conversationHistory}/>
+      {/* <Transcript conversation={conversationHistory}/> */}
     </>
   )
 }
