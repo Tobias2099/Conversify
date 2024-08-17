@@ -1,6 +1,6 @@
 import React from "react";
 
-function Text({content}) {
+function Text({content, isAI}) {
   return (
     <>
       <div class="textbox">

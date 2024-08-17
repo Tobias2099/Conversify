@@ -6,8 +6,7 @@ import Button from "./Components/Button.jsx";
 import AudioIcon from "./Components/AudioIcon.jsx"; 
 import 'regenerator-runtime';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
-
-
+import Transcript from "./Components/Transcript.jsx"
 
 //import AudioPlayer from "./Components/AudioPlayer.jsx";
 
@@ -189,7 +188,7 @@ function Conversation() {
         })}
       </ul>
   
-      
+      <Transcript conversation={conversationHistory}/>
     </>
   )
 }

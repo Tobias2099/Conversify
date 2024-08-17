@@ -1,14 +1,13 @@
 import React from "react";
 
 function Transcript({conversation}) {
-  let isAI = false;
   return (
     <>
       <div id="transcript-container">
 
-        {conversation.map((entry) => {
-          <Text content={entry} />
-        })}
+        {conversation.map((entry, index) => (
+          <Text key={index} content={entry} isAI={index % 2 === 0? false : true} />
+        ))}
 
       </div>
     </>
