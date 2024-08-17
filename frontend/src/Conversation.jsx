@@ -4,6 +4,11 @@ import "./Style/Conversation.css";
 import Title from "./Components/Title.jsx"; 
 import Button from "./Components/Button.jsx";
 import AudioIcon from "./Components/AudioIcon.jsx"; 
+import 'regenerator-runtime';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+
+
+
 //import AudioPlayer from "./Components/AudioPlayer.jsx";
 
 function Conversation() {
@@ -15,12 +20,22 @@ function Conversation() {
   const [analyzer, setAnalyzer] = useState(null);
   const [amplitude, setAmplitude] = useState(0);
   const [animationId, setAnimationId] = useState(null); // useful for cancelling animation
+  // setup recognizer object
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+
 
   function textToSpeech(text, lang = 'en-US') {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
     window.speechSynthesis.speak(utterance);
   }
+
+
 
 
   useEffect(() => {
@@ -84,6 +99,7 @@ function Conversation() {
 
         recorder.onstart = () => {
           setIsRecording(true);
+          SpeechRecognition.startListening();
         };
 
         recorder.onstop = () => {
@@ -104,6 +120,8 @@ function Conversation() {
   }
 
   function stopRecording() {
+    console.log("STOP RECORDING");
+    SpeechRecognition.stopListening();
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
       mediaRecorder.stop();
     }
@@ -140,10 +158,17 @@ function Conversation() {
       
       <div>
         <div id="convo-btns-bottom">
-        <Button name="End Conversation" />
+        <Button name="End Conversation" handleClick={resetTranscript}/>
         </div>
       </div>
 
+      <div>
+        <h3>Recorded Audio:</h3>
+        {audioUrl && <audio controls src={audioUrl} />}
+      </div>
+      <p>Transcript: {transcript}</p>
+  
+      
     </>
   )
 }
