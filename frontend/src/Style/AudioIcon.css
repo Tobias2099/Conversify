@@ -1,6 +1,6 @@
 #icon {
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the icon horizontally and vertically */
+    margin: 40px auto;
 }
