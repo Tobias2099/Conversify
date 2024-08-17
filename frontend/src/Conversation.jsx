@@ -20,6 +20,7 @@ function Conversation() {
   const [analyzer, setAnalyzer] = useState(null);
   const [amplitude, setAmplitude] = useState(0);
   const [animationId, setAnimationId] = useState(null); // useful for cancelling animation
+  const [conversationHistory, setConversationHistory] = useState([]);
   // setup recognizer object
   const {
     transcript,
@@ -125,6 +126,26 @@ function Conversation() {
       cancelAnimationFrame(animationId);
       setAnimationId(null); // Clear the animation ID
     }
+        // Send the transcript to the backend server in flask. 
+      // Send the transcript to the backend
+      fetch('http://127.0.0.1:5000/process', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text: transcript, // send transcript (** TODO: prepend a prompt depending on proficiency level **)
+          conversation_history: conversationHistory, // send current conversation history.
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Response from backend:', data);
+          // update the conversation history with new response
+          setConversationHistory(data.new_history);
+          textToSpeech(data.text); // convert response to speech
+        })
+        .catch(error => console.error('Error:', error));
   }
 
   function backClick() { 
@@ -162,6 +183,11 @@ function Conversation() {
         {audioUrl && <audio controls src={audioUrl} />}
       </div>
       <p>Transcript: {transcript}</p>
+      <ul>
+        {conversationHistory.map(item => {
+          <li>{item}</li>
+        })}
+      </ul>
   
       
     </>
