@@ -13,7 +13,7 @@ function Conversation() {
   const [audioContext, setAudioContext] = useState(null);
   const [analyzer, setAnalyzer] = useState(null);
   const [amplitude, setAmplitude] = useState(0);
-  const [animationId, setAnimationId] = useState(null); //useful for cancelling animation
+  const [animationId, setAnimationId] = useState(null); 
 
   useEffect(() => {
     if (audioContext && analyzer) {
@@ -118,6 +118,15 @@ function Conversation() {
         <Button name="Change Settings" style={{backgroundColor: '#FFC000', border: 'none', width: '18%', marginTop: '-1%', fontSize: '150%', height: '50px'}}  handleClick={backClick}/>
       </div>
       
+      <div>
+        <AudioIcon amplitude={amplitude} isRecording={isRecording} />
+      </div>
+
+      <div>
+        <h3>Recorded Audio:</h3>
+        {audioUrl && <audio controls src={audioUrl} />}
+      </div>
+
       <div id="convo-btns">
         <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
         <Button name="Show Transcript" />
@@ -129,15 +138,9 @@ function Conversation() {
         </div>
       </div>
 
-      <div>
-        <h3>Recorded Audio:</h3>
-        {audioUrl && <audio controls src={audioUrl} />}
-      </div>
+      
 
-      <div>
-        <h3>Audio Icon:</h3>
-        <AudioIcon amplitude={amplitude} />
-      </div>
+      
     </>
   )
 }
