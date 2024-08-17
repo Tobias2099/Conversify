@@ -96,7 +96,6 @@ function Conversation() {
   }
 
   function stopRecording() {
-    console.log("STOP RECORDING");
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
       mediaRecorder.stop();
     }
@@ -118,6 +117,11 @@ function Conversation() {
         <Button name="Change Settings" style={{backgroundColor: '#FFC000', border: 'none', width: '18%', marginTop: '-1%', fontSize: '150%', height: '50px'}}  handleClick={backClick}/>
       </div>
       
+      <div>
+        <h3>Audio Icon:</h3>
+        <AudioIcon amplitude={amplitude} />
+      </div>
+
       <div id="convo-btns">
         <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
         <Button name="Show Transcript" />
@@ -132,11 +136,6 @@ function Conversation() {
       <div>
         <h3>Recorded Audio:</h3>
         {audioUrl && <audio controls src={audioUrl} />}
-      </div>
-
-      <div>
-        <h3>Audio Icon:</h3>
-        <AudioIcon amplitude={amplitude} />
       </div>
     </>
   )
