@@ -20,8 +20,13 @@ function Conversation() {
       
       <div id="convo-btns">
         <Button name="Start Recording"/>
-        <Button name="End Conversation" />
         <Button name="Show Transcript" />
+      </div>
+      
+      <div id="convo-btns">
+        <div id="convo-btns-bottom">
+        <Button name="End Conversation" />
+        </div>
       </div>
     </>
   )
