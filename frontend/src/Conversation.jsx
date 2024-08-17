@@ -126,7 +126,6 @@ function Conversation() {
       </div>
       
       <div>
-        <h3>Audio Icon:</h3>
         <AudioIcon amplitude={amplitude} />
       </div>
 

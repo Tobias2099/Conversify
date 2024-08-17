@@ -1,21 +1,20 @@
 :root {
-  --blue: #002D62;
+  --blue: #0047AB;
 }
-
 button {
-  color: var(--blue);
+  color: #0047AB;
   height: 73px;
   width: 27%;
   font-size: 175%;
   font-weight: 500;
-  border: 2.75px solid var(--blue);
+  border: 2.75px solid #0047AB;
   border-radius: 4px;
   background-color: white;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effect */
 }
 
 button:hover {
-  background-color: var(--blue);
+  background-color: #0047AB;
   color: white;
   border-color: white;
 }
