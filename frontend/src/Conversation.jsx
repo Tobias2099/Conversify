@@ -9,6 +9,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 
 
 
+//import AudioPlayer from "./Components/AudioPlayer.jsx";
 
 function Conversation() {
   const navigate = useNavigate(); 
@@ -143,12 +144,8 @@ function Conversation() {
       </div>
       
       <div>
-        <AudioIcon amplitude={amplitude} isRecording={isRecording} />
-      </div>
-
-      <div>
-        <h3>Recorded Audio:</h3>
-        {audioUrl && <audio controls src={audioUrl} />}
+        <h3>Audio Icon:</h3>
+        <AudioIcon amplitude={amplitude} />
       </div>
 
       <div id="convo-btns">
@@ -162,11 +159,9 @@ function Conversation() {
         </div>
       </div>
 
-      
-
       <div>
-        <h3>Audio Icon:</h3>
-        <AudioIcon amplitude={amplitude} />
+        <h3>Recorded Audio:</h3>
+        {audioUrl && <audio controls src={audioUrl} />}
       </div>
       <p>Transcript: {transcript}</p>
   
