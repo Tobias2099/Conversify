@@ -11,28 +11,23 @@ function Conversation() {
   const [audioUrl, setAudioUrl] = useState(null);
 
   useEffect(() => {
-    // halt recording when component unmounts
     return () => {
       if (mediaRecorder && mediaRecorder.state !== 'inactive') {
         mediaRecorder.stop();
       }
-    }
+    };
   }, [mediaRecorder]);
 
   async function startRecording() {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true }); //request access to microphone using Web API
-        const recorder = new MediaRecorder(stream); 
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const recorder = new MediaRecorder(stream);
         const chunks = [];
 
         recorder.ondataavailable = (event) => {
           if (event.data.size > 0) {
-            // Handle the recorded audio data
-            const audioBlob = new Blob([event.data], { type: 'audio/wav' });
-            const audioUrl = URL.createObjectURL(audioBlob);
-            // You can use the audioUrl to play the audio or send it to a server
-            console.log('Audio URL:', audioUrl);
+            chunks.push(event.data);
           }
         };
 
@@ -41,9 +36,9 @@ function Conversation() {
         };
 
         recorder.onstop = () => {
-          const audioBlob = new Blob(chunks, { type: 'audio/wav' });
-          const audioUrl = URL.createObjectURL(audioBlob);
-          setAudioUrl(audioUrl);
+          const audioBlob = new Blob(chunks, { type: 'audio/webm' });
+          const url = URL.createObjectURL(audioBlob);
+          setAudioUrl(url);
           setIsRecording(false);
         };
 
@@ -60,7 +55,6 @@ function Conversation() {
   function stopRecording() {
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
       mediaRecorder.stop();
-      setIsRecording(false);
     }
   }
 
@@ -76,11 +70,11 @@ function Conversation() {
       </div>
       
       <div id="convo-btns">
-        <Button onClick={!isRecording ? () => {startRecording()} : () => {stopRecording()}} name={isRecording ? "Stop Recording" : "Start Recording"}/>
+        <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
         <Button name="Show Transcript" />
       </div>
       
-      <div id="convo-btns">
+      <div>
         <div id="convo-btns-bottom">
         <Button name="End Conversation" />
         </div>
@@ -88,7 +82,7 @@ function Conversation() {
 
       <div>
         <h3>Recorded Audio:</h3>
-        <audio controls src={audioUrl} />
+        {audioUrl && <audio controls src={audioUrl} />}
       </div>
     </>
   )
