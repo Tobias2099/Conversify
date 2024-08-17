@@ -184,7 +184,7 @@ function Conversation() {
       <p>Transcript: {transcript}</p>
       <ul>
         {conversationHistory.map(item => {
-          <li>{item}</li>
+          return <li>{item}</li>
         })}
       </ul>
   

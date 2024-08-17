@@ -1,4 +1,5 @@
 import React from "react";
+import "../Style/Transcript.css"
 
 function Transcript({conversation}) {
   return (
