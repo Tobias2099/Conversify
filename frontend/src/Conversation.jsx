@@ -9,6 +9,15 @@ function Conversation() {
   const [isRecording, setIsRecording] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const [audioUrl, setAudioUrl] = useState(null);
+  const [audioContext, setAudioContext] = useState(null);
+  const [analyzer, setAnalyzer] = useState(null);
+
+  useEffect(() => {
+    if (audioContext && analyzer) {
+      const bufferLength = analyzer.frequencyBinCount;
+      setDataArray(new Uint8Array(bufferLength));
+    }
+  }, [audioContext, analyzer]);
 
   useEffect(() => {
     return () => {
