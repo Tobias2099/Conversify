@@ -4,6 +4,7 @@ import "./Style/Conversation.css";
 import Title from "./Components/Title.jsx"; 
 import Button from "./Components/Button.jsx";
 import AudioIcon from "./Components/AudioIcon.jsx"; 
+//import AudioPlayer from "./Components/AudioPlayer.jsx";
 
 function Conversation() {
   const navigate = useNavigate(); 
@@ -13,7 +14,14 @@ function Conversation() {
   const [audioContext, setAudioContext] = useState(null);
   const [analyzer, setAnalyzer] = useState(null);
   const [amplitude, setAmplitude] = useState(0);
-  const [animationId, setAnimationId] = useState(null); //useful for cancelling animation
+  const [animationId, setAnimationId] = useState(null); // useful for cancelling animation
+
+  function textToSpeech(text, lang = 'en-US') {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    window.speechSynthesis.speak(utterance);
+  }
+
 
   useEffect(() => {
     if (audioContext && analyzer) {
