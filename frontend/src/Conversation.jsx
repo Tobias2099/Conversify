@@ -147,6 +147,10 @@ function Conversation() {
         <AudioIcon amplitude={amplitude} />
       </div>
 
+      <div>
+        <center>{audioUrl && <audio controls src={audioUrl} />}</center>
+      </div>
+
       <div id="convo-btns">
         <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
         <Button name="Show Transcript" />
