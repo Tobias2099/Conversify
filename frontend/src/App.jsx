@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Title from "./Components/Title.jsx"
 import Button from "./Components/Button.jsx"
 import './Style/App.css'
+import Conversation from "./Conversation.jsx"
 
 function App() {
 
@@ -18,7 +19,8 @@ function App() {
 
   return ( 
     <>
-      <Title />
+      <Conversation />
+      {/*<Title hasBio={true}/>
       <h2>Select Learning <span>Language</span></h2>
       <div className="button-container">
         <Button type="language" name="English" handleClick={levelClick}/>
@@ -34,9 +36,9 @@ function App() {
       
 
       <div id="start" className="button-container">
-        <Button name="START" style={{fontSize: '250%', height: '90px', border: '5px solid #FFC000', width: '35%', borderRadius: '15% / 100%', display: 'block'}}/>
+        <Button name="START" style={{fontSize: '250%', height: '90px', border: '7px solid #FFC000', width: '35%', borderRadius: '15% / 100%', display: 'block'}}/>
         <div id ="start-decoration"></div>
-      </div>
+      </div>*/}
     </>
   )
 }

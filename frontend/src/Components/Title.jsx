@@ -1,20 +1,6 @@
 import React from "react";
 
-function Title() {
-
-  /*const bannerStyle = { 
-    backgroundImage: 'url(./Banner.png)', // Path to your image
-    backgroundSize: 'cover',      // Cover the entire banner area
-    backgroundPosition: 'center', // Center the image
-    backgroundRepeat: 'no-repeat', // Prevent repeating the image
-    border: 'none',
-    padding: '0',
-    margin: '0',
-    boxShadow: 'none',
-    display: 'block',            // Ensure the banner is displayed as a block element
-    width: '100%',               // Ensure the banner takes full width if needed
-    height: 'auto',              // Adjust height if necessary
-  }*/
+function Title({hasBio}) {
 
   const bannerStyle = {
     //backgroundColor: '#0B1957', // Dark blue background
@@ -28,6 +14,7 @@ function Title() {
     padding: '3%',
     margin: '-1%',
     borderBottom: '5px solid #FFC000',
+    width: '100%'
   }
 
   const bioStyle = { 
@@ -37,14 +24,18 @@ function Title() {
     fontStyle: 'italic'
   }
 
+  const hidden = {
+    display: 'none'
+  }
+
   const titleStyle = {
     textShadow: '2px 2px 0 #FFC000, -1px -1px 0 #FFC000, 1px -1px 0 #FFC000, -1px 1px 0 #FFC000', /* Border color and size */
   }
 
   return (
     <div style={bannerStyle}>
-        <div style={titleStyle}>Conversify</div> 
-        <div style={bioStyle}>
+        <div id="title" style={titleStyle}>Conversify</div> 
+        <div style={hasBio? bioStyle : hidden}>
             Your personal language conversation partner! <br/> 
             Record your speech, and let our AI spark dynamic conversations that boost your fluency. <br/> 
             Perfect your accent, expand your vocabulary, and practice anytime, anywhere. <br/> 
