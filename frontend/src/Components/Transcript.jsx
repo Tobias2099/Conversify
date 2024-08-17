@@ -1,9 +1,12 @@
 import React from "react";
 
-function Transcript() {
+function Transcript({compText, userText}) {
   return (
     <>
-      
+      <div id="transcript-container">
+        
+
+      </div>
     </>
   );
 }
