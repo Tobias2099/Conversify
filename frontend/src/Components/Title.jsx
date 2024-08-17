@@ -3,7 +3,6 @@ import React from "react";
 function Title({hasBio}) {
 
   const bannerStyle = {
-    //backgroundColor: '#0B1957', // Dark blue background
     backgroundImage: "linear-gradient(to right, #002D62, #0066b2, #172D9D, #2a52be, #787CFE)",
     color: '#F8F3EA',             // White text color
     textAlign: 'center',        // Center align text
