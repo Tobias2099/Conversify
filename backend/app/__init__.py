@@ -1,12 +1,13 @@
-from flask import Flask
+from flask import Flask, jsonify
 import os
+from . import generator, recognizer
 
 def create_app():
     app = Flask(__name__)
-    app.config['API_KEY'] = os.getenv('API_KEY')
+    API_KEY = os.getenv('API_KEY')
+
+    @app.route('/')
+    def home():
+        return f"Hi {API_KEY}"
     
-    with app.app_context():
-        from . import generator, recognizer
-        # Register blueprints or initialize parts of the app
-        
     return app
