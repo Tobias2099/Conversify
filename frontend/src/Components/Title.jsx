@@ -11,10 +11,11 @@ function Title({hasBio}) {
     fontSize: '6.5em',            // Large font size
     fontFamily: 'Arial, Calibri, sans-serif', // Font style
     fontWeight: 'bold',
-    padding: '3%',
+    paddingTop: '3%',
+    paddingBottom: '3%',
     margin: '-1%',
     borderBottom: '5px solid #FFC000',
-    width: '100%'
+    width: '100%',
   }
 
   const bioStyle = { 
