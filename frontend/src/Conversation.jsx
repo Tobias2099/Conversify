@@ -30,7 +30,6 @@ function Conversation() {
         setAmplitude(averageAmplitude);
         console.log("Amplitude: " + amplitude);
 
-        //setDataArray([...array]); // Trigger re-render
         requestAnimationFrame(updateDataArray);
       };
       updateDataArray();
