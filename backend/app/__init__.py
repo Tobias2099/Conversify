@@ -1,10 +1,16 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import os
 from .recognizer import text_to_speech
 from .generator import generate
 from dotenv import load_dotenv
+
+
+
 def create_app():
     app = Flask(__name__)
+    CORS(app)
+
     load_dotenv()
     API_KEY = os.getenv('API_KEY')
 
