@@ -4,10 +4,28 @@
 
 button {
   color: var(--blue);
-  height: 100%;
-  width: 15%;
+  height: 65px;
+  width: 25%;
+  font-size: 150%;
+  border: 2px solid var(--blue);
+  border-radius: 3%;
+  background-color: white;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effect */
+}
+
+button:hover {
+  background-color: var(--blue);
+  color: white;
+  border-color: white;
 }
 
 .button-container {
-  border: 1px solid red;
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+  margin: auto;
+}
+
+.level-clicked {
+  background-color: yellow;
 }
