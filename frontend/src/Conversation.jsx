@@ -77,15 +77,19 @@ function Conversation() {
       
       <div id="convo-btns">
         <Button onClick={!isRecording ? () => {startRecording()} : () => {stopRecording()}} name={isRecording ? "Stop Recording" : "Start Recording"}/>
-        <Button name="End Conversation" />
         <Button name="Show Transcript" />
       </div>
-      {
-        <div>
-          <h3>Recorded Audio:</h3>
-          <audio controls src={audioUrl} />
+      
+      <div id="convo-btns">
+        <div id="convo-btns-bottom">
+        <Button name="End Conversation" />
         </div>
-      }
+      </div>
+
+      <div>
+        <h3>Recorded Audio:</h3>
+        <audio controls src={audioUrl} />
+      </div>
     </>
   )
 }
