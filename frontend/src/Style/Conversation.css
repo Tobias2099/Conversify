@@ -5,6 +5,36 @@
   justify-content: space-between;
 }
 
+#main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 20px;
+}
+
+#audio-icon-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#chat-container {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+#chat-box {
+  background: #f5f5f5; /* Light grey background for chat box */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  height: 300px; /* Adjust as needed */
+  overflow-y: auto;
+}
+
 #banner {
   display: flex;
   flex-direction: column; 
