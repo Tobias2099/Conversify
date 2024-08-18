@@ -20,8 +20,8 @@ function App() {
   }
 
   function startClick() {
-    const selectedLanguage = document.querySelector('button.level-clicked[name="language"]')?.textContent;
-    const selectedProficiency = document.querySelector('button.level-clicked[name="profiency"]')?.textContent;
+    const selectedLanguage = document.querySelector('button.level-clicked[type="language"]')?.textContent;
+    const selectedProficiency = document.querySelector('button.level-clicked[type="profiency"]')?.textContent;
     console.log("Navigating with:", selectedLanguage, selectedProficiency);
     navigate('/conversation', {
       state: {
