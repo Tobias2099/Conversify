@@ -110,6 +110,9 @@ function Conversation() {
         setAnimationId(id);
       };
       updateDataArray();
+    } else if (!isRecording && animationId) {
+        cancelAnimationFrame(animationId); // Stop the animation when recording stops
+        setAmplitude(0); // Reset amplitude to 0 when not recording
     }
 
     return () => {
