@@ -3,10 +3,10 @@ import "../Style/Text.css";
 
 function Text({content, isAI}) {
   const textStyle = isAI? {
-    backgroundColor: '#f8d7da', /* Light red background for AI messages */
+    backgroundColor: '#ffc516', /* Light blue background for AI messages */
     alignSelf: 'flex-start' /* Align to the left */
   } : {
-    backgroundColor: '#d1e7dd', /* Light green background for user messages */
+    backgroundColor: '#89CFF0', /* Light yellow background for user messages */
     alignSelf: 'flex-end' /* Align to the right */
   }
 

@@ -156,6 +156,16 @@ function Conversation() {
     navigate('/');
   }
 
+  function transcriptBtn(event) {
+    if (event.target.innerText === "Show Transcript") {
+      document.querySelector("button[name='Show Transcript']").innerText = "Hide Transcript";
+      document.querySelector("button[name='Show Transcript']").name = "Hide Transcript";
+    } else {
+      document.querySelector("button[name='Hide Transcript']").innerText = "Show Transcript";
+      document.querySelector("button[name='Hide Transcript']").name = "Show Transcript";
+    }
+  }
+
   return (
     <>
       <div id="banner">
@@ -165,7 +175,7 @@ function Conversation() {
       
       <div id="main-content">
         <div id="icon-chat-container">
-          <div class="cell">
+          <div className="cell">
             <AudioIcon amplitude={amplitude} />
           </div>
           <Transcript conversation={conversationHistory}/>
@@ -174,7 +184,7 @@ function Conversation() {
 
       <div id="convo-btns">
         <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
-        <Button name="Show Transcript" />
+        <Button handleClick={transcriptBtn} name="Show Transcript" />
       </div>
       
       <div>
