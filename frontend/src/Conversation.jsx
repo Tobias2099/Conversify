@@ -5,9 +5,9 @@ import Title from "./Components/Title.jsx";
 import Button from "./Components/Button.jsx";
 import AudioIcon from "./Components/AudioIcon.jsx"; 
 import 'regenerator-runtime';
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
-import Transcript from "./Components/Transcript.jsx"
-import settings from './helpers/helpers.js'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import Transcript from "./Components/Transcript.jsx";
+import settings from './helpers/helpers.js';
 //import AudioPlayer from "./Components/AudioPlayer.jsx";
 
 function Conversation() {
@@ -18,7 +18,7 @@ function Conversation() {
   const [audioContext, setAudioContext] = useState(null);
   const [analyzer, setAnalyzer] = useState(null);
   const [amplitude, setAmplitude] = useState(0);
-  const [animationId, setAnimationId] = useState(null); // useful for cancelling animation
+  const [animationId, setAnimationId] = useState(null); // Useful for cancelling animation
   const [conversationHistory, setConversationHistory] = useState([]);
   const [currentLanguage, setCurrentLanguage] = useState(["English", "en-US"]);
   const [prompt, setPrompt] = useState("");
@@ -83,11 +83,10 @@ function Conversation() {
       const updateDataArray = () => {
         analyzer.getByteFrequencyData(dataArray);
 
-        //calculating average amplitude
+        // Calculating average amplitude
         const sum = dataArray.reduce((a, b) => a + b, 0);
         const averageAmplitude = sum / dataArray.length;
         setAmplitude(averageAmplitude);
-
 
         const id = requestAnimationFrame(updateDataArray);
         setAnimationId(id);
@@ -166,26 +165,26 @@ function Conversation() {
       cancelAnimationFrame(animationId);
       setAnimationId(null); // Clear the animation ID
     }
-        // Send the transcript to the backend server in flask. 
-      // Send the transcript to the backend
-      fetch('http://127.0.0.1:5000/process', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          text: transcript, // send transcript (** TODO: prepend a prompt depending on proficiency level **)
-          conversation_history: conversationHistory, // send current conversation history.
-        }),
+
+    // Send the transcript to the backend server in Flask
+    fetch('http://127.0.0.1:5000/process', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        text: transcript, // Send transcript (** TODO: prepend a prompt depending on proficiency level **)
+        conversation_history: conversationHistory, // Send current conversation history.
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Response from backend:', data);
+        // Update the conversation history with new response
+        setConversationHistory(data.new_history);
+        textToSpeech(data.text); // Convert response to speech
       })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Response from backend:', data);
-          // update the conversation history with new response
-          setConversationHistory(data.new_history);
-          textToSpeech(data.text); // convert response to speech
-        })
-        .catch(error => console.error('Error:', error));
+      .catch(error => console.error('Error:', error));
   }
 
   function backClick() { 
@@ -193,17 +192,12 @@ function Conversation() {
   }
 
   function transcriptBtn(event) {
-    const btn = event.target; // Directly use the clicked button
-  
-    if (btn.innerText === "Show Transcript") {
-      btn.innerText = "Hide Transcript";
-      btn.name = "Hide Transcript";
-      document.getElementById("transcript-container").classList.add("hidden");
+    if (event.target.innerText === "Show Transcript") {
+      document.querySelector("button[name='Show Transcript']").innerText = "Hide Transcript";
+      document.querySelector("button[name='Show Transcript']").name = "Hide Transcript";
     } else {
-      btn.innerText = "Show Transcript";
-      btn.name = "Show Transcript";
-      document.getElementById("transcript-container").classList.remove("hidden");
-      document.getElementById("audio-icon").classList.remove("icon-container");
+      document.querySelector("button[name='Hide Transcript']").innerText = "Show Transcript";
+      document.querySelector("button[name='Hide Transcript']").name = "Show Transcript";
     }
   }
 
@@ -211,16 +205,13 @@ function Conversation() {
     <>
       <div id="banner">
         <Title hasBio={false}/>
-        <Button name="Change Settings" style={{backgroundColor: '#FFC000', border: 'none', width: '18%', marginTop: '-1%', fontSize: '150%', height: '50px'}}  handleClick={backClick}/>
+        <Button name="Change Settings" style={{backgroundColor: '#FFC000', border: 'none', width: '18%', marginTop: '-1%', fontSize: '150%', height: '50px'}} handleClick={backClick}/>
       </div>
       
       <div id="main-content">
         <div id="icon-chat-container">
           <div id="audio-icon-container" className="cell">
             <AudioIcon amplitude={amplitude} />
-            <div id="recorded-audio-container">
-              {audioUrl && <audio controls src={audioUrl} />}
-            </div>
           </div>
           <div id="transcript-container">
             <Transcript conversation={conversationHistory}/>
@@ -230,19 +221,22 @@ function Conversation() {
 
       <div id="convo-btns">
         <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
-        <Button handleClick={transcriptBtn} name="Show Transcript" type="Show Transcript"/>
+        <Button handleClick={transcriptBtn} name="Show Transcript" />
       </div>
       
-      <div>
-        <div id="convo-btns-bottom">
+      <div id="convo-btns-bottom">
         <Button name="End Conversation" handleClick={resetTranscript}/>
-        </div>
       </div>
-      
+
+      <div>
+        <h3>Recorded Audio:</h3>
+        {audioUrl && <audio controls src={audioUrl} />}
+      </div>
       <p>Transcript: {transcript}</p>
+      {console.log(conversationHistory)}
       <ul>
         {conversationHistory.map(item => {
-          <li>{item}</li>
+          return <li>{item}</li>
         })}
       </ul>
 
