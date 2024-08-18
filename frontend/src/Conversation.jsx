@@ -221,7 +221,6 @@ function Conversation() {
           <div id="audio-icon-container">
             <AudioIcon amplitude={amplitude} />
             <div id="recorded-audio-container">
-              <h3 style={{ fontFamily: 'Arial, Calibri, sans-serif' }}>Recorded Audio:</h3>
               {audioUrl && <audio controls src={audioUrl} />}
             </div>
           </div>
