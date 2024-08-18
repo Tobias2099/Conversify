@@ -1,16 +1,19 @@
 import React from "react";
-import "../Style/Transcript.css"
+import "../Style/Transcript.css";
+import Text from "./Text.jsx";
 
 function Transcript({conversation}) {
   return (
     <>
-      <div id="transcript-container">
+      <div>
+        <div id="chat-box">
+          {conversation.map((entry, index) => (
+            <Text key={index} content={entry} isAI={index % 2 === 0? false : true} />
+          ))}
 
-        {conversation.map((entry, index) => (
-          <Text key={index} content={entry} isAI={index % 2 === 0? false : true} />
-        ))}
-
+        </div>
       </div>
+      
     </>
   );
 }

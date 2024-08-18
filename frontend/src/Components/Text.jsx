@@ -1,10 +1,20 @@
 import React from "react";
+import "../Style/Text.css";
 
 function Text({content, isAI}) {
+  const textStyle = isAI? {
+    backgroundColor: '#f8d7da', /* Light red background for AI messages */
+    alignSelf: 'flex-start' /* Align to the left */
+  } : {
+    backgroundColor: '#d1e7dd', /* Light green background for user messages */
+    alignSelf: 'flex-end' /* Align to the right */
+  }
+
+  const message = isAI? content.substring(4) : content.substring(6);
   return (
     <>
-      <div class="textbox">
-        <p>{content}</p>
+      <div className="textbox" style={textStyle}>
+        <p>{message}</p>
       </div>
     </>
   );

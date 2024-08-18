@@ -159,18 +159,11 @@ function Conversation() {
       </div>
       
       <div id="main-content">
-        <div id="audio-icon-container">
-          <AudioIcon amplitude={amplitude} />
-        </div>
-        <div id="chat-container">
-          <h3>Conversation</h3>
-          <div id="chat-box">
-            <ul>
-              {conversationHistory.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
+        <div id="icon-chat-container">
+          <div class="cell">
+            <AudioIcon amplitude={amplitude} />
           </div>
+          <Transcript conversation={conversationHistory}/>
         </div>
       </div>
 
