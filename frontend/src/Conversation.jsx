@@ -76,7 +76,7 @@ function Conversation() {
   }
 
   useEffect(() => {
-    if (audioContext && analyzer) {
+    if (isRecording && audioContext && analyzer) {
       const bufferLength = analyzer.frequencyBinCount;
       const dataArray = new Uint8Array(bufferLength);
 
@@ -100,7 +100,7 @@ function Conversation() {
         cancelAnimationFrame(animationId); // Stop the animation when recording stops
       }
     };
-  }, [audioContext, analyzer]);
+  }, [isRecording, audioContext, analyzer]);
 
   useEffect(() => {
     return () => {
