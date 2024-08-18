@@ -20,17 +20,16 @@
   width: 80%;
 }
 
-/*add this class to icon-chat-container when transcript is hidden*/
-.icon-container {
-  display: flex;
-  justify-content: center;
-}
-
-.cell {
+#audio-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 83%;
+  width: 100%;
+}
+
+#icon-container {
+  margin-left: 20%;
 }
 
 #banner {

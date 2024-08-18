@@ -163,10 +163,13 @@ function Conversation() {
       btn.innerText = "Hide Transcript";
       btn.name = "Hide Transcript";
       document.getElementById("transcript-container").classList.add("hidden");
+      document.getElementById("audio-icon").style.marginLeft = "93%";
     } else {
       btn.innerText = "Show Transcript";
       btn.name = "Show Transcript";
       document.getElementById("transcript-container").classList.remove("hidden");
+      document.getElementById("audio-icon").classList.remove("icon-container");
+      document.getElementById("audio-icon").style.marginLeft = "0";
     }
   }
 
@@ -179,7 +182,7 @@ function Conversation() {
       
       <div id="main-content">
         <div id="icon-chat-container">
-          <div className="cell">
+          <div id="audio-icon">
             <AudioIcon amplitude={amplitude} />
           </div>
           <div id="transcript-container">
