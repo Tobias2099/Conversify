@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'; 
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate, useLocation } from 'react-router-dom'; 
 import "./Style/Conversation.css"; 
 import Title from "./Components/Title.jsx"; 
 import Button from "./Components/Button.jsx";
@@ -20,6 +20,11 @@ function Conversation() {
   const [amplitude, setAmplitude] = useState(0);
   const [animationId, setAnimationId] = useState(null); // useful for cancelling animation
   const [conversationHistory, setConversationHistory] = useState([]);
+  // fetch settings user chose
+  const location = useLocation();
+  const { language, proficiency } = location.state || {};
+  console.log("Language:", language);
+  console.log("Proficiency:", proficiency);
   // setup recognizer object
   const {
     transcript,
@@ -46,7 +51,7 @@ function Conversation() {
         const sum = dataArray.reduce((a, b) => a + b, 0);
         const averageAmplitude = sum / dataArray.length;
         setAmplitude(averageAmplitude);
-        console.log("Amplitude: " + amplitude);
+
 
         const id = requestAnimationFrame(updateDataArray);
         setAnimationId(id);

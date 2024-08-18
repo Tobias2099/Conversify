@@ -19,8 +19,16 @@ function App() {
     event.target.classList.toggle("level-clicked");
   }
 
-  function startClick() { 
-    navigate('/conversation');
+  function startClick() {
+    const selectedLanguage = document.querySelector('button.level-clicked[name="language"]')?.textContent;
+    const selectedProficiency = document.querySelector('button.level-clicked[name="profiency"]')?.textContent;
+    console.log("Navigating with:", selectedLanguage, selectedProficiency);
+    navigate('/conversation', {
+      state: {
+        language: selectedLanguage,
+        proficiency: selectedProficiency,
+      },
+    });
   }
 
   return ( 
