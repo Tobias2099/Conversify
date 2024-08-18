@@ -8,7 +8,8 @@ function Text({content, isAI}) {
     borderRadius: '8px',
     paddingLeft: '2%',
     paddingRight: '2%',
-    marginLeft: '1%'
+    marginLeft: '1%',
+    fontFamily: 'Arial, Calibri, sans-serif'
   } : {
     backgroundColor: '#89CFF0', /* Light blue background for user messages */
     alignSelf: 'flex-end', /* Align to the right */
@@ -16,7 +17,8 @@ function Text({content, isAI}) {
     borderRadius: '8px',
     paddingLeft: '2%',
     paddingRight: '2%',
-    marginRight: '1%'
+    marginRight: '1%',
+    fontFamily: 'Arial, Calibri, sans-serif'
   }
 
   const message = isAI? content.substring(4) : (content.substring(0,6) === "User: " ? content.substring(6) : content);

@@ -1,11 +1,11 @@
 #chat-box {
-  background: #f5f5f5; /* Light grey background for chat box */
+  background-color: #f5f5f5; /* Light grey background for chat box */
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
-  height: 425px; /* Fixed height */
+  height: 350px; /* Fixed height */
   max-height: 80vh; /* Optional: Limit height to viewport height */
-  width: 50vw; /* Takes up half the viewport width */
+  width: 45vw; /* Takes up half the viewport width */
   min-width: 300px; /* Optional: Minimum width for smaller screens */
   box-sizing: border-box; /* Ensures padding and border are included in width/height */
   display: flex;
