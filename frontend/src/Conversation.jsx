@@ -218,8 +218,12 @@ function Conversation() {
       
       <div id="main-content">
         <div id="icon-chat-container">
-          <div className="cell">
+          <div id="audio-icon-container">
             <AudioIcon amplitude={amplitude} />
+            <div id="recorded-audio-container">
+              <h3>Recorded Audio:</h3>
+              {audioUrl && <audio controls src={audioUrl} />}
+            </div>
           </div>
           <div id="transcript-container">
             <Transcript conversation={conversationHistory}/>
@@ -233,10 +237,7 @@ function Conversation() {
         <Button name="End Conversation" handleClick={resetTranscript}/>
       </div>
 
-      <div>
-        <h3>Recorded Audio:</h3>
-        {audioUrl && <audio controls src={audioUrl} />}
-      </div>
+      
       <p>Transcript: {transcript}</p>
 
       <ul>
@@ -245,7 +246,7 @@ function Conversation() {
         })}
       </ul>
   
-      {/* <Transcript conversation={conversationHistory}/> */}
+      
     </>
   ); 
 } 

@@ -3,7 +3,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
-  height: 325px; /* Fixed height */
+  height: 425px; /* Fixed height */
   max-height: 80vh; /* Optional: Limit height to viewport height */
   width: 50vw; /* Takes up half the viewport width */
   min-width: 300px; /* Optional: Minimum width for smaller screens */
