@@ -73,6 +73,19 @@ function Conversation() {
   function textToSpeech(text, lang = currentLanguage[1]) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
+
+    // Event when the speech starts
+    utterance.onstart = () => {
+      console.log('Speech has started.');
+      // You can perform actions here when speech starts
+    };
+
+    // Event when the speech ends
+    utterance.onend = () => {
+      console.log('Speech has ended.');
+      // You can perform actions here when speech ends
+    };
+
     window.speechSynthesis.speak(utterance);
   }
 
@@ -204,8 +217,8 @@ function Conversation() {
     if (event.target.innerText === "Show Transcript") {
       btn.innerText = "Hide Transcript";
       btn.name = "Hide Transcript";
-      chatBox.style.display = "block";  // Show the transcript
       document.getElementById('audio-icon-container').style.marginLeft = "0%";
+      chatBox.style.display = "flex";  // Show the transcript
     } else {
       btn.innerText = "Show Transcript";
       btn.name = "Show Transcript";
