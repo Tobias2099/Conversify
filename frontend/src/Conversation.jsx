@@ -5,9 +5,15 @@ import Title from "./Components/Title.jsx";
 import Button from "./Components/Button.jsx";
 import AudioIcon from "./Components/AudioIcon.jsx"; 
 import 'regenerator-runtime';
+<<<<<<< HEAD
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import Transcript from "./Components/Transcript.jsx";
 import settings from './helpers/helpers.js';
+=======
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import Transcript from "./Components/Transcript.jsx"
+import settings from './helpers/helpers.js'
+>>>>>>> 113e1cadba9342b69765b66e5c4efcd43ff385fd
 //import AudioPlayer from "./Components/AudioPlayer.jsx";
 
 function Conversation() {
@@ -18,7 +24,7 @@ function Conversation() {
   const [audioContext, setAudioContext] = useState(null);
   const [analyzer, setAnalyzer] = useState(null);
   const [amplitude, setAmplitude] = useState(0);
-  const [animationId, setAnimationId] = useState(null); // Useful for cancelling animation
+  const [animationId, setAnimationId] = useState(null); // useful for cancelling animation
   const [conversationHistory, setConversationHistory] = useState([]);
   const [currentLanguage, setCurrentLanguage] = useState(["English", "en-US"]);
   const [prompt, setPrompt] = useState("");
@@ -69,7 +75,7 @@ function Conversation() {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
-  function textToSpeech(text, lang = 'fr-FR') {
+  function textToSpeech(text, lang = currentLanguage[1]) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
     window.speechSynthesis.speak(utterance);
@@ -83,10 +89,11 @@ function Conversation() {
       const updateDataArray = () => {
         analyzer.getByteFrequencyData(dataArray);
 
-        // Calculating average amplitude
+        //calculating average amplitude
         const sum = dataArray.reduce((a, b) => a + b, 0);
         const averageAmplitude = sum / dataArray.length;
         setAmplitude(averageAmplitude);
+
 
         const id = requestAnimationFrame(updateDataArray);
         setAnimationId(id);
@@ -135,7 +142,7 @@ function Conversation() {
 
         recorder.onstart = () => {
           setIsRecording(true);
-          SpeechRecognition.startListening({ language: 'fr-FR' });
+          SpeechRecognition.startListening({ language: currentLanguage[1] });
         };
 
         recorder.onstop = () => {
@@ -165,26 +172,31 @@ function Conversation() {
       cancelAnimationFrame(animationId);
       setAnimationId(null); // Clear the animation ID
     }
-
-    // Send the transcript to the backend server in Flask
-    fetch('http://127.0.0.1:5000/process', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        text: transcript, // Send transcript (** TODO: prepend a prompt depending on proficiency level **)
-        conversation_history: conversationHistory, // Send current conversation history.
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Response from backend:', data);
-        // Update the conversation history with new response
-        setConversationHistory(data.new_history);
-        textToSpeech(data.text); // Convert response to speech
+        
+      // set prompt to blank if its not our first time making request.
+      if (prompt !== "") {
+        setPrompt("");
+      }
+      // Send the transcript to the backend
+      
+      fetch('http://127.0.0.1:5000/process', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text: prompt + transcript, // send transcript (** TODO: prepend a prompt depending on proficiency level **)
+          conversation_history: conversationHistory, // send current conversation history.
+        }),
       })
-      .catch(error => console.error('Error:', error));
+        .then(response => response.json())
+        .then(data => {
+          console.log('Response from backend:', data);
+          // update the conversation history with new response
+          setConversationHistory(data.new_history);
+          textToSpeech(data.text); // convert response to speech
+        })
+        .catch(error => console.error('Error:', error));
   }
 
   function backClick() { 
@@ -205,12 +217,12 @@ function Conversation() {
     <>
       <div id="banner">
         <Title hasBio={false}/>
-        <Button name="Change Settings" style={{backgroundColor: '#FFC000', border: 'none', width: '18%', marginTop: '-1%', fontSize: '150%', height: '50px'}} handleClick={backClick}/>
+        <Button name="Change Settings" style={{backgroundColor: '#FFC000', border: 'none', width: '18%', marginTop: '-1%', fontSize: '150%', height: '50px'}}  handleClick={backClick}/>
       </div>
       
       <div id="main-content">
         <div id="icon-chat-container">
-          <div id="audio-icon-container" className="cell">
+          <div className="cell">
             <AudioIcon amplitude={amplitude} />
           </div>
           <div id="transcript-container">
@@ -224,8 +236,10 @@ function Conversation() {
         <Button handleClick={transcriptBtn} name="Show Transcript" />
       </div>
       
-      <div id="convo-btns-bottom">
+      <div>
+        <div id="convo-btns-bottom">
         <Button name="End Conversation" handleClick={resetTranscript}/>
+        </div>
       </div>
 
       <div>
@@ -233,13 +247,14 @@ function Conversation() {
         {audioUrl && <audio controls src={audioUrl} />}
       </div>
       <p>Transcript: {transcript}</p>
-      {console.log(conversationHistory)}
+
       <ul>
         {conversationHistory.map(item => {
           return <li>{item}</li>
         })}
       </ul>
-
+  
+      {/* <Transcript conversation={conversationHistory}/> */}
     </>
   ); 
 } 

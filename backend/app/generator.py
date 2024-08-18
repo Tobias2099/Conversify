@@ -2,10 +2,11 @@ import cohere
 
 def generate(prompt, conversation_history, key):
     # Add the usrs  msg to the conversation history
+        
     conversation_history.append(f"User: {prompt}")
 
     co = cohere.Client(key)
-
+  
     # get response
     conversation_text = "\n".join(conversation_history)
     response = co.chat(
