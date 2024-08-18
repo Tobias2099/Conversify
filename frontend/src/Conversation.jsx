@@ -194,14 +194,12 @@ function Conversation() {
   }
 
   function transcriptBtn(event) {
-    const btn = event.target; // Directly use the clicked button
-  
-    if (btn.innerText === "Show Transcript") {
-      btn.innerText = "Hide Transcript";
-      document.getElementById("transcript-container").classList.remove("hidden");
+    if (event.target.innerText === "Show Transcript") {
+      document.querySelector("button[name='Show Transcript']").innerText = "Hide Transcript";
+      document.querySelector("button[name='Show Transcript']").name = "Hide Transcript";
     } else {
-      btn.innerText = "Show Transcript";
-      document.getElementById("transcript-container").classList.add("hidden");
+      document.querySelector("button[name='Hide Transcript']").innerText = "Show Transcript";
+      document.querySelector("button[name='Hide Transcript']").name = "Show Transcript";
     }
   }
 
@@ -215,34 +213,36 @@ function Conversation() {
       <div id="main-content">
         <div id="icon-chat-container">
           <div id="audio-icon-container">
+          <div className="cell">
             <AudioIcon amplitude={amplitude} />
-            <div id="recorded-audio-container">
-              {audioUrl && <audio controls src={audioUrl} />}
-            </div>
           </div>
-          <div id="transcript-container" className="hidden">
-            <Transcript conversation={conversationHistory}/>
-          </div>   
+          <Transcript conversation={conversationHistory}/>
         </div>
       </div>
 
       <div id="convo-btns">
         <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
-        <Button handleClick={transcriptBtn} name="Show Transcript"/>
+        <Button handleClick={transcriptBtn} name="Show Transcript" />
       </div>
       
       <div id="convo-btns-bottom">
         <Button name="End Conversation" handleClick={resetTranscript}/>
       </div>
-      
+
+      <div>
+        <h3>Recorded Audio:</h3>
+        {audioUrl && <audio controls src={audioUrl} />}
+      </div>
       <p>Transcript: {transcript}</p>
+      {console.log(conversationHistory)}
       <ul>
-        {conversationHistory.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
+        {conversationHistory.map(item => {
+          return <li>{item}</li>
+        })}
       </ul>
+
     </>
-  ); 
+  )
 }
 
 export default Conversation;
