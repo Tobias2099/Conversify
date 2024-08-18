@@ -3,12 +3,15 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
-  height: 300px; /* Adjust as needed */
-  overflow-y: auto;
-  flex: 2;
+  height: 325px; /* Fixed height */
+  max-height: 80vh; /* Optional: Limit height to viewport height */
+  width: 50vw; /* Takes up half the viewport width */
+  min-width: 300px; /* Optional: Minimum width for smaller screens */
+  box-sizing: border-box; /* Ensures padding and border are included in width/height */
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
+  overflow-y: auto; /* Enables scrolling if content overflows */
+  margin-left: 20px; /* Space to the left of the chat box */
 }
 
 .hidden {

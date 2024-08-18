@@ -40,6 +40,36 @@
   margin-top: -20px;
 }
 
+
+#main-content {
+  display: flex;
+  flex-direction: column; /* Stack items vertically in the main content */
+  align-items: center; 
+  margin: 20px;
+  margin-top: 60px;
+}
+
+#icon-chat-container {
+  display: flex;
+  flex-direction: row; /* Align items horizontally */
+  align-items: center; /* Align items at the start of the flex container */
+  gap: 20px; /* Space between AudioIcon and Transcript */
+  justify-content: center; 
+}
+
+#audio-icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#recorded-audio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -4px; /* Space between the AudioIcon and the recorded audio player */
+}
+
 #convo-btns { 
   display: flex; 
   align-items:center; 
