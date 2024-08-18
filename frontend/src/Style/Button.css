@@ -3,12 +3,12 @@
 }
 
 button {
-  color: #002D62;
+  color: #0047AB;;
   height: 73px;
   width: 30%;
   font-size: 175%;
   font-weight: 500;
-  border: 2.5px solid #002D62;
+  border: 2.5px solid #0047AB;
   border-radius: 8px; /* Increased border-radius for a softer appearance */
   background-color: #F8F9FA; /* Slightly off-white for a subtle contrast */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a subtle lift */

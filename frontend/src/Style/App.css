@@ -1,5 +1,5 @@
 :root {
-  --blue: #002D62;
+  --blue: #0047AB;;
 }
 
 h2 {
@@ -12,7 +12,7 @@ h2 {
 }
 
 #start {
-  margin-top: 4.25%;
+  margin-top: 6%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,9 +25,31 @@ span {
 }
 
 #start-decoration {
-  border: 3.5px solid #FFC000;
-  border-radius: 1% / 100%;
-  width: 70%;
+  border-top: 3.5px solid #FFC000;
+  border-radius: 10px;
+  width: 100%;
   position: absolute;
   z-index: -1;
+  background-image: linear-gradient(to right, #002D62, #0066b2, #172D9D, #2a52be, #787CFE);
+  height: 160px; /* Adjust height for better fit */
+}
+
+#start-button {
+  background-color: #FFC000;
+  color: #0047AB;
+  font-size: 150%;
+  font-weight: bold;
+  border: 2px solid #0047AB;;
+  border-radius: 10px;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  width: 70%; 
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+#start-button:hover {
+  background-color: #FFD700; /* Slightly lighter gold on hover */
+  color: #001D4E; /* Darker blue on hover */
+  border-color: #001D4E;
 }

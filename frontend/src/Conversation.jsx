@@ -266,21 +266,13 @@ function Conversation() {
         </div>
       </div>
 
-      <div id="convo-btns">
-        {isBotTalking ? "" : <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>}
-        <Button handleClick={transcriptBtn} name="Hide Transcript" />
-        <Button name="End Conversation" handleClick={endConversation}/>
+      <div id="btn-decoration">
+        <div id="convo-btns">
+          {isBotTalking ? "" : <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>}
+          <Button handleClick={transcriptBtn} name="Hide Transcript" />
+          <Button name="End Conversation" handleClick={endConversation}/>
+        </div>
       </div>
-
-      
-      <p>Transcript: {transcript}</p>
-
-      <ul>
-        {conversationHistory.map(item => {
-          return <li>{item}</li>
-        })}
-      </ul>
-      
     </>
   ); 
 } 

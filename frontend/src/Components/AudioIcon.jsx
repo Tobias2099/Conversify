@@ -2,7 +2,7 @@ import React from "react";
 import "../Style/AudioIcon.css"
 
 function AudioIcon({ amplitude }) {
-  const size = Math.max(250 + (amplitude * 1.5),300);
+  const size = Math.max(200 + (amplitude * 1.25), 250);
   const dimension = 190 + amplitude * 1.5;
 
   // Calculate a shade of blue based on amplitude
