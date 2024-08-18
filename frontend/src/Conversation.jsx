@@ -61,6 +61,7 @@ function Conversation() {
     setPrompt(prompt);
     console.log(prompt);
   }, []);
+
   // setup recognizer object
   const {
     transcript,
@@ -211,6 +212,21 @@ function Conversation() {
     }
   }
 
+  function endConversation() { 
+    if(isRecording){ 
+      stopRecording(); 
+    }
+
+    resetTranscript(); 
+
+    setConversationHistory([]); 
+
+    if (window.speechSynthesis) { 
+      window.speechSynthesis.cancel(); 
+    }
+
+  }
+
   return (
     <>
       <div id="banner">
@@ -236,7 +252,7 @@ function Conversation() {
       <div id="convo-btns">
         <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
         <Button handleClick={transcriptBtn} name="Hide Transcript" />
-        <Button name="End Conversation" handleClick={resetTranscript}/>
+        <Button name="End Conversation" handleClick={endConversation}/>
       </div>
 
       
@@ -247,7 +263,6 @@ function Conversation() {
           return <li>{item}</li>
         })}
       </ul>
-  
       
     </>
   ); 
