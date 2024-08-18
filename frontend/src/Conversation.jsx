@@ -5,15 +5,9 @@ import Title from "./Components/Title.jsx";
 import Button from "./Components/Button.jsx";
 import AudioIcon from "./Components/AudioIcon.jsx"; 
 import 'regenerator-runtime';
-<<<<<<< HEAD
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import Transcript from "./Components/Transcript.jsx";
-import settings from './helpers/helpers.js';
-=======
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import Transcript from "./Components/Transcript.jsx"
 import settings from './helpers/helpers.js'
->>>>>>> 113e1cadba9342b69765b66e5c4efcd43ff385fd
 //import AudioPlayer from "./Components/AudioPlayer.jsx";
 
 function Conversation() {
@@ -205,11 +199,13 @@ function Conversation() {
 
   function transcriptBtn(event) {
     if (event.target.innerText === "Show Transcript") {
-      document.querySelector("button[name='Show Transcript']").innerText = "Hide Transcript";
-      document.querySelector("button[name='Show Transcript']").name = "Hide Transcript";
+      const btn = event.target;
+      btn.innerText = "Hide Transcript";
+      btn.name = "Hide Transcript";
     } else {
-      document.querySelector("button[name='Hide Transcript']").innerText = "Show Transcript";
-      document.querySelector("button[name='Hide Transcript']").name = "Show Transcript";
+      const btn = event.target;
+      btn.innerText = "Show Transcript";
+      btn.name = "Show Transcript";
     }
   }
 
