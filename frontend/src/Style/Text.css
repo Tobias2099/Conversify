@@ -7,6 +7,7 @@
     word-wrap: break-word;
   }
   
+  /*don't need these selectors*/
   .textbox.user {
     background-color: #d1e7dd; /* Light green background for user messages */
     align-self: flex-end; /* Align to the right */
