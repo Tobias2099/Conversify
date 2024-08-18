@@ -204,10 +204,12 @@ function Conversation() {
       btn.innerText = "Hide Transcript";
       btn.name = "Hide Transcript";
       chatBox.style.display = "block";  // Show the transcript
+      document.getElementById('audio-icon-container').style.marginLeft = "0%";
     } else {
       btn.innerText = "Show Transcript";
       btn.name = "Show Transcript";
       chatBox.style.display = "none";  // Hide the transcript
+      document.getElementById('audio-icon-container').style.marginLeft = "18%";
     }
   }
 
