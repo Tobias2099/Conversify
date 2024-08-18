@@ -19,7 +19,7 @@ function Text({content, isAI}) {
     marginRight: '1%'
   }
 
-  const message = isAI? content.substring(4) : content.substring(0);
+  const message = isAI? content.substring(4) : (content.substring(0,6) === "User: " ? content.substring(6) : content);
   return (
     <>
       <div className="textbox" style={textStyle}>

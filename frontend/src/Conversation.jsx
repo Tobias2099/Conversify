@@ -205,10 +205,12 @@ function Conversation() {
       btn.innerText = "Hide Transcript";
       btn.name = "Hide Transcript";
       chatBox.style.display = "block";  // Show the transcript
+      document.getElementById('audio-icon-container').style.marginLeft = "0%";
     } else {
       btn.innerText = "Show Transcript";
       btn.name = "Show Transcript";
       chatBox.style.display = "none";  // Hide the transcript
+      document.getElementById('audio-icon-container').style.marginLeft = "18%";
     }
   }
 
@@ -239,7 +241,6 @@ function Conversation() {
           <div id="audio-icon-container">
             <AudioIcon amplitude={amplitude} />
             <div id="recorded-audio-container">
-              <h3 style={{ fontFamily: 'Arial, Calibri, sans-serif' }}>Recorded Audio:</h3>
               {audioUrl && <audio controls src={audioUrl} />}
             </div>
           </div>
