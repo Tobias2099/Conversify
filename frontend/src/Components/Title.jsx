@@ -29,7 +29,7 @@ function Title({hasBio}) {
   }
 
   const titleStyle = {
-    textShadow: '2px 2px 0 #FFC000, -1px -1px 0 #FFC000, 1px -1px 0 #FFC000, -1px 1px 0 #FFC000', /* Border color and size */
+    textShadow: '4px 2px 0 #FFC000, -1px -1px 0 #FFC000, 1px -1px 0 #FFC000, -1px 1px 0 #FFC000', /* Border color and size */
   }
 
   return (
