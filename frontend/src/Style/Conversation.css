@@ -5,11 +5,33 @@
   justify-content: space-between;
 }
 
-/*.cell {
+#main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: -2%;
+  margin-top: 60px;
+}
+
+#icon-chat-container {
+  display: grid;
+  margin: auto;
+  grid-template-columns: 0.35fr 0.6fr;
+  width: 80%;
+}
+
+/*add this class to icon-chat-container when transcript is hidden*/
+.icon-container {
+  display: flex;
+  justify-content: center;
+}
+
+.cell {
   display: flex;
   align-items: center;
   justify-content: center;
-}*/ 
+  height: 83%;
+}
 
 #banner {
   display: flex;

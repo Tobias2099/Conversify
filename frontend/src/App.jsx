@@ -11,6 +11,7 @@ function App() {
   function levelClick(event) {
     const buttons = document.querySelectorAll('button');
     const type = event.target.name;
+    console.log("TYPE: " + type);
     buttons.forEach((btn) => {
       if (btn.name === type) {
         btn.classList.remove("level-clicked");
@@ -19,8 +20,16 @@ function App() {
     event.target.classList.toggle("level-clicked");
   }
 
-  function startClick() { 
-    navigate('/conversation');
+  function startClick() {
+    const selectedLanguage = document.querySelector('button.level-clicked[type="language"]')?.textContent;
+    const selectedProficiency = document.querySelector('button.level-clicked[type="profiency"]')?.textContent;
+    console.log("Navigating with:", selectedLanguage, selectedProficiency);
+    navigate('/conversation', {
+      state: {
+        language: selectedLanguage,
+        proficiency: selectedProficiency,
+      },
+    });
   }
 
   return ( 

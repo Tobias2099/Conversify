@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'; 
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate, useLocation } from 'react-router-dom'; 
 import "./Style/Conversation.css"; 
 import Title from "./Components/Title.jsx"; 
 import Button from "./Components/Button.jsx";
@@ -20,6 +20,11 @@ function Conversation() {
   const [amplitude, setAmplitude] = useState(0);
   const [animationId, setAnimationId] = useState(null); // useful for cancelling animation
   const [conversationHistory, setConversationHistory] = useState([]);
+  // fetch settings user chose
+  const location = useLocation();
+  const { language, proficiency } = location.state || {};
+  console.log("Language:", language);
+  console.log("Proficiency:", proficiency);
   // setup recognizer object
   const {
     transcript,
@@ -46,7 +51,7 @@ function Conversation() {
         const sum = dataArray.reduce((a, b) => a + b, 0);
         const averageAmplitude = sum / dataArray.length;
         setAmplitude(averageAmplitude);
-        console.log("Amplitude: " + amplitude);
+
 
         const id = requestAnimationFrame(updateDataArray);
         setAnimationId(id);
@@ -151,6 +156,20 @@ function Conversation() {
     navigate('/');
   }
 
+  function transcriptBtn(event) {
+    const btn = event.target; // Directly use the clicked button
+  
+    if (btn.innerText === "Show Transcript") {
+      btn.innerText = "Hide Transcript";
+      btn.name = "Hide Transcript";
+      document.getElementById("transcript-container").classList.add("hidden");
+    } else {
+      btn.innerText = "Show Transcript";
+      btn.name = "Show Transcript";
+      document.getElementById("transcript-container").classList.remove("hidden");
+    }
+  }
+
   return (
     <>
       <div id="banner">
@@ -161,18 +180,22 @@ function Conversation() {
       <div id="main-content">
         <div id="icon-chat-container">
           <div id="audio-icon-container">
+          <div className="cell">
             <AudioIcon amplitude={amplitude} />
             <div id="recorded-audio-container">
               {audioUrl && <audio controls src={audioUrl} />}
             </div>
           </div>
           <Transcript conversation={conversationHistory}/> 
+          <div id="transcript-container">
+            <Transcript conversation={conversationHistory}/>
+          </div>   
         </div>
       </div>
 
       <div id="convo-btns">
         <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
-        <Button name="Show Transcript" />
+        <Button handleClick={transcriptBtn} name="Show Transcript" type="Show Transcript"/>
       </div>
       
       <div>
@@ -189,7 +212,7 @@ function Conversation() {
       </ul>
 
     </>
-  )
-}
+  ) 
+} 
 
 export default Conversation;
