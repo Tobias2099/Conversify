@@ -69,7 +69,7 @@ function Conversation() {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
-  function textToSpeech(text, lang = 'fr-FR') {
+  function textToSpeech(text, lang = currentLanguage[1]) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
     window.speechSynthesis.speak(utterance);
@@ -136,7 +136,7 @@ function Conversation() {
 
         recorder.onstart = () => {
           setIsRecording(true);
-          SpeechRecognition.startListening({ language: 'fr-FR' });
+          SpeechRecognition.startListening({ language: currentLanguage[1] });
         };
 
         recorder.onstop = () => {
@@ -166,15 +166,20 @@ function Conversation() {
       cancelAnimationFrame(animationId);
       setAnimationId(null); // Clear the animation ID
     }
-        // Send the transcript to the backend server in flask. 
+        
+      // set prompt to blank if its not our first time making request.
+      if (prompt !== "") {
+        setPrompt("");
+      }
       // Send the transcript to the backend
+      
       fetch('http://127.0.0.1:5000/process', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          text: transcript, // send transcript (** TODO: prepend a prompt depending on proficiency level **)
+          text: prompt + transcript, // send transcript (** TODO: prepend a prompt depending on proficiency level **)
           conversation_history: conversationHistory, // send current conversation history.
         }),
       })
@@ -234,7 +239,7 @@ function Conversation() {
         {audioUrl && <audio controls src={audioUrl} />}
       </div>
       <p>Transcript: {transcript}</p>
-      {console.log(conversationHistory)}
+
       <ul>
         {conversationHistory.map(item => {
           return <li>{item}</li>
