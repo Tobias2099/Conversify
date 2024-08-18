@@ -11,6 +11,7 @@ function App() {
   function levelClick(event) {
     const buttons = document.querySelectorAll('button');
     const type = event.target.name;
+    console.log("TYPE: " + type);
     buttons.forEach((btn) => {
       if (btn.name === type) {
         btn.classList.remove("level-clicked");

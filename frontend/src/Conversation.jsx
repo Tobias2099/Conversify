@@ -152,12 +152,16 @@ function Conversation() {
   }
 
   function transcriptBtn(event) {
-    if (event.target.innerText === "Show Transcript") {
-      document.querySelector("button[name='Show Transcript']").innerText = "Hide Transcript";
-      document.querySelector("button[name='Show Transcript']").name = "Hide Transcript";
+    const btn = event.target; // Directly use the clicked button
+  
+    if (btn.innerText === "Show Transcript") {
+      btn.innerText = "Hide Transcript";
+      btn.name = "Hide Transcript";
+      document.getElementById("transcript-container").classList.add("hidden");
     } else {
-      document.querySelector("button[name='Hide Transcript']").innerText = "Show Transcript";
-      document.querySelector("button[name='Hide Transcript']").name = "Show Transcript";
+      btn.innerText = "Show Transcript";
+      btn.name = "Show Transcript";
+      document.getElementById("transcript-container").classList.remove("hidden");
     }
   }
 
@@ -173,13 +177,15 @@ function Conversation() {
           <div className="cell">
             <AudioIcon amplitude={amplitude} />
           </div>
-          <Transcript conversation={conversationHistory}/>
+          <div id="transcript-container">
+            <Transcript conversation={conversationHistory}/>
+          </div>   
         </div>
       </div>
 
       <div id="convo-btns">
         <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
-        <Button handleClick={transcriptBtn} name="Show Transcript" />
+        <Button handleClick={transcriptBtn} name="Show Transcript" type="Show Transcript"/>
       </div>
       
       <div>

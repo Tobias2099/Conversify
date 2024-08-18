@@ -20,6 +20,12 @@
   width: 80%;
 }
 
+/*add this class to icon-chat-container when transcript is hidden*/
+.icon-container {
+  display: flex;
+  justify-content: center;
+}
+
 .cell {
   display: flex;
   align-items: center;
