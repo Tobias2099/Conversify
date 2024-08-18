@@ -226,12 +226,7 @@ function Conversation() {
       <div id="convo-btns">
         <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
         <Button handleClick={transcriptBtn} name="Show Transcript" />
-      </div>
-      
-      <div>
-        <div id="convo-btns-bottom">
         <Button name="End Conversation" handleClick={resetTranscript}/>
-        </div>
       </div>
 
       <div>

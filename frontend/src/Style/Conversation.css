@@ -76,25 +76,13 @@
   align-items:center; 
   margin: 20px 0; 
   margin-bottom: 20px; 
-  justify-content: center;
-  flex: 1; 
+  justify-content: center; 
+  flex: 0; 
+  margin: 0;
 }
 
 #convo-btns button {
   margin: 15px;
   width: 20%;
 }
-
-#convo-btns-bottom {
-  display: flex;
-  justify-content: center; /* Center the button horizontally */
-  align-items:center;
-  flex: 0; 
-  margin: 0; /* this helps it stay down */ 
-}
-
-#convo-btns-bottom button {
-  margin: 4px; 
-  width: 20%; 
-} 
 
