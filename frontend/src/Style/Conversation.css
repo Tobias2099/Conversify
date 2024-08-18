@@ -5,33 +5,6 @@
   justify-content: space-between;
 }
 
-#main-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: -2%;
-  margin-top: 60px;
-}
-
-#icon-chat-container {
-  display: grid;
-  margin: auto;
-  grid-template-columns: 0.35fr 0.6fr;
-  width: 80%;
-}
-
-#audio-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 83%;
-  width: 100%;
-}
-
-#icon-container {
-  margin-left: 20%;
-}
-
 #banner {
   display: flex;
   flex-direction: column; 
@@ -43,17 +16,33 @@
 
 #main-content {
   display: flex;
-  flex-direction: column; /* Stack items vertically in the main content */
-  align-items: center; 
-  margin: 20px;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  margin-bottom: 20px;
   margin-top: 60px;
+}
+
+#icon-chat-container {
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+  align-items: center; /* Center items horizontally */
+  gap: 20px; /* Space between AudioIcon and Transcript */
+}
+
+#audio-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto; /* Adjust height as needed */
+  width: auto; /* Adjust width as needed */
 }
 
 #icon-chat-container {
   display: flex;
   flex-direction: row; /* Align items horizontally */
   align-items: center; /* Align items at the start of the flex container */
-  gap: 20px; /* Space between AudioIcon and Transcript */
+  gap: 50px; /* Space between AudioIcon and Transcript */
   justify-content: center; 
 }
 
@@ -67,7 +56,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -4px; /* Space between the AudioIcon and the recorded audio player */
+  margin-top: -35px; /* Space between the AudioIcon and the recorded audio player */
 }
 
 #convo-btns { 
