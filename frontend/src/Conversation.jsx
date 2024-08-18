@@ -22,6 +22,7 @@ function Conversation() {
   const [conversationHistory, setConversationHistory] = useState([]);
   const [currentLanguage, setCurrentLanguage] = useState(["English", "en-US"]);
   const [prompt, setPrompt] = useState("");
+  const [isBotTalking, setIsBotTalking] = useState(false);
   // fetch settings user chose
   const location = useLocation();
 
@@ -77,12 +78,13 @@ function Conversation() {
     // Event when the speech starts
     utterance.onstart = () => {
       console.log('Speech has started.');
-      // You can perform actions here when speech starts
+      setIsBotTalking(true);
     };
 
     // Event when the speech ends
     utterance.onend = () => {
       console.log('Speech has ended.');
+      setIsBotTalking(false);
       // You can perform actions here when speech ends
     };
 
@@ -90,6 +92,7 @@ function Conversation() {
   }
 
   useEffect(() => {
+    console.log(isBotTalking);
     if (isRecording && audioContext && analyzer) {
       const bufferLength = analyzer.frequencyBinCount;
       const dataArray = new Uint8Array(bufferLength);
@@ -114,7 +117,7 @@ function Conversation() {
         cancelAnimationFrame(animationId); // Stop the animation when recording stops
       }
     };
-  }, [isRecording, audioContext, analyzer]);
+  }, [isRecording, audioContext, analyzer, isBotTalking]);
 
   useEffect(() => {
     return () => {
@@ -264,7 +267,7 @@ function Conversation() {
       </div>
 
       <div id="convo-btns">
-        <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
+        {isBotTalking ? "" : <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>}
         <Button handleClick={transcriptBtn} name="Hide Transcript" />
         <Button name="End Conversation" handleClick={endConversation}/>
       </div>
