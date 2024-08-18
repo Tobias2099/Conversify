@@ -1,5 +1,4 @@
 import React from "react";
-import "../Style/Text.css";
 
 function Text({content, isAI}) {
   const textStyle = isAI? {
@@ -21,3 +20,4 @@ function Text({content, isAI}) {
 }
 
 export default Text;
+
