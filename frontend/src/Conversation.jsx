@@ -163,13 +163,11 @@ function Conversation() {
       btn.innerText = "Hide Transcript";
       btn.name = "Hide Transcript";
       document.getElementById("transcript-container").classList.add("hidden");
-      document.getElementById("audio-icon").style.marginLeft = "93%";
     } else {
       btn.innerText = "Show Transcript";
       btn.name = "Show Transcript";
       document.getElementById("transcript-container").classList.remove("hidden");
       document.getElementById("audio-icon").classList.remove("icon-container");
-      document.getElementById("audio-icon").style.marginLeft = "0";
     }
   }
 
