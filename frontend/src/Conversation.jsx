@@ -198,14 +198,16 @@ function Conversation() {
   }
 
   function transcriptBtn(event) {
+    const chatBox = document.getElementById('chat-box');
+    const btn = event.target;
     if (event.target.innerText === "Show Transcript") {
-      const btn = event.target;
       btn.innerText = "Hide Transcript";
       btn.name = "Hide Transcript";
+      chatBox.style.display = "block";  // Show the transcript
     } else {
-      const btn = event.target;
       btn.innerText = "Show Transcript";
       btn.name = "Show Transcript";
+      chatBox.style.display = "none";  // Hide the transcript
     }
   }
 
@@ -232,7 +234,7 @@ function Conversation() {
 
       <div id="convo-btns">
         <Button handleClick={isRecording ? stopRecording : startRecording} name={isRecording ? "Stop Recording" : "Start Recording"}/>
-        <Button handleClick={transcriptBtn} name="Show Transcript" />
+        <Button handleClick={transcriptBtn} name="Hide Transcript" />
         <Button name="End Conversation" handleClick={resetTranscript}/>
       </div>
 
