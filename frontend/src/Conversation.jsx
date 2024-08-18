@@ -7,6 +7,10 @@ import AudioIcon from "./Components/AudioIcon.jsx";
 import 'regenerator-runtime';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import Transcript from "./Components/Transcript.jsx";
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import Transcript from "./Components/Transcript.jsx"
+import settings from './helpers/helpers.js'
+//import AudioPlayer from "./Components/AudioPlayer.jsx";
 
 function Conversation() {
   const navigate = useNavigate(); 
@@ -18,12 +22,48 @@ function Conversation() {
   const [amplitude, setAmplitude] = useState(0);
   const [animationId, setAnimationId] = useState(null); // Useful for cancelling animation
   const [conversationHistory, setConversationHistory] = useState([]);
-  // Fetch settings user chose
+  const [currentLanguage, setCurrentLanguage] = useState(["English", "en-US"]);
+  const [prompt, setPrompt] = useState("");
+  // fetch settings user chose
   const location = useLocation();
-  const { language, proficiency } = location.state || {};
-  console.log("Language:", language);
-  console.log("Proficiency:", proficiency);
-  // Setup recognizer object
+
+
+  useEffect(() => {
+    const { language, proficiency } = location.state || {};
+    console.log("Language:", language);
+    console.log("Proficiency:", proficiency);
+    let code = "";
+    let prompt = "";
+    switch (language) {
+      case "English":
+        code = "en-US"
+        prompt += settings[0][0].english
+        break;
+      case "French":
+        code = "fr-FR"
+        prompt += settings[0][1].french
+        break;
+      case "Spanish":
+        code = "es-US"
+        prompt += settings[0][2].spanish
+        break;
+    }
+    switch (proficiency) {
+      case "Beginner":
+        prompt += settings[1][0].beginner
+        break;
+      case "Intermediate":
+        prompt += settings[1][1].intermediate;
+        break;
+      case "Advanced":
+        prompt += settings[1][2].advanced;
+        break;
+    }
+    setCurrentLanguage([language, code]);
+    setPrompt(prompt);
+    console.log(prompt);
+  }, []);
+  // setup recognizer object
   const {
     transcript,
     listening,
@@ -31,7 +71,7 @@ function Conversation() {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
-  function textToSpeech(text, lang = 'en-US') {
+  function textToSpeech(text, lang = 'fr-FR') {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
     window.speechSynthesis.speak(utterance);
@@ -97,7 +137,7 @@ function Conversation() {
 
         recorder.onstart = () => {
           setIsRecording(true);
-          SpeechRecognition.startListening();
+          SpeechRecognition.startListening({ language: 'fr-FR' });
         };
 
         recorder.onstop = () => {
